@@ -25,7 +25,7 @@ describe('When verifying the request', () => {
     let expectedCert = './ssl/interactions.cert';
     mock.expects('readFileSync').once().withArgs(expectedCert, 'utf8').returns('abcdefg');
 
-    requestVerification.verifyRequest(req,expectedCert,expectedSig);
+    requestVerification.verifyRequest(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCert,expectedSig);
 
     mock.verify();
   });
