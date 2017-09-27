@@ -1,0 +1,24 @@
+{
+  "name": "login.dfe.request-verification",
+  "version": "1.0.0",
+  "description": "request verification",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DFE-Digital/login.dfe.request-verification.git"
+  },
+  "author": "DfE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DFE-Digital/login.dfe.request-verification/issues"
+  },
+  "homepage": "https://github.com/DFE-Digital/login.dfe.request-verification#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "sinon": "^4.0.0"
+  }
+}
