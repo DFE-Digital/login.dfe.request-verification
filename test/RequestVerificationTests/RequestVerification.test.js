@@ -21,6 +21,7 @@ describe('When verifying the request', () => {
   });
   it('the interactions certification is loaded', () => {
     sandbox.stub(DigitalSignatureService.prototype,'verifyRequest').returns(true);
+    sandbox.stub(fs,'statSync').returns({isFile: ()=>{return true;}});
     const mock = sinon.mock(fs);
     let expectedCert = './ssl/interactions.cert';
     mock.expects('readFileSync').once().withArgs(expectedCert, 'utf8').returns('abcdefg');
@@ -35,10 +36,24 @@ describe('When verifying the request', () => {
     let expectedCert = './ssl/interactions.cert';
     mock.expects('readFileSync').once().withArgs(expectedCert, 'utf8').returns(expectedCertContent);
     sandbox.stub(DigitalSignatureService.prototype,'verifyRequest').withArgs(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCertContent,expectedSig).returns(true);
+    sandbox.stub(fs,'statSync').returns({isFile: ()=>{return true;}});
 
     const actual = requestVerification.verifyRequest(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCert, expectedSig);
 
     expect(actual).to.equal(true);
     mock.verify();
   });
+  it('then if the cert in config is not a path but the value, it is used', () => {
+    let expectedCert = 'abajsbdakjsbd';
+     const mock = sinon.mock(fs);
+
+     mock.expects('readFileSync').never();
+
+
+    sandbox.stub(DigitalSignatureService.prototype,'verifyRequest').withArgs(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCert,expectedSig).returns(true);
+
+    requestVerification.verifyRequest(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCert, expectedSig);
+
+    mock.verify();
+  })
 });

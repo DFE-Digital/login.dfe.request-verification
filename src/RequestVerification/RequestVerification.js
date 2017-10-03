@@ -10,11 +10,29 @@ class RequestVerification {
     digitalSignatureService = new DigitalSignatureService();
   }
 
+  isFileSync(aPath) {
+    try {
+      return fs.statSync(aPath).isFile();
+    } catch (e) {
+      if (e.code === 'ENOENT') {
+        return false;
+      } else {
+        throw e;
+      }
+    }
+  }
+
   verifyRequest(contents, cert, sig) {
 
-    const publicKey = fs.readFileSync(cert, 'utf8');
+    let publicKey = cert;
+
+    if(this.isFileSync(cert)){
+      publicKey = fs.readFileSync(cert, 'utf8');
+    }
+
     const verified = digitalSignatureService.verifyRequest(contents, publicKey, sig);
     return verified;
   }
+
 }
 module.exports = RequestVerification;
