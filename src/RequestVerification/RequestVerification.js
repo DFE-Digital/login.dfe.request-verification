@@ -14,11 +14,7 @@ class RequestVerification {
     try {
       return fs.statSync(aPath).isFile();
     } catch (e) {
-      if (e.code === 'ENOENT') {
-        return false;
-      } else {
-        throw e;
-      }
+      return false;
     }
   }
 

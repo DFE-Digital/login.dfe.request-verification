@@ -55,5 +55,14 @@ describe('When verifying the request', () => {
     requestVerification.verifyRequest(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCert, expectedSig);
 
     mock.verify();
-  })
+  });
+  it('then it should treat cert as cert when file check throws error', () => {
+    const expectedCert = 'abcdefg';
+    sandbox.stub(fs,'statSync').throws();
+    sandbox.stub(DigitalSignatureService.prototype,'verifyRequest').withArgs(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCert,expectedSig).returns(false);
+
+    const actual = requestVerification.verifyRequest(`{"uuid":"${expectedUuid}","uid":"${expectedUid}"}`,expectedCert, expectedSig);
+
+    expect(actual).to.equal(false);
+  });
 });
