@@ -14,8 +14,8 @@ jest.mock('fs', () => {
   };
 });
 
-const requestVerification = require('../../src/RequestVerification/RequestVerification');
-const DigitalSignatureService = require('../../src/Utils/DigitalSignatureService');
+const requestVerification = require('./../../src/RequestVerification');
+const DigitalSignatureService = require('./../../src/Utils/DigitalSignatureService');
 const fs = require('fs');
 
 const expectedUid = 'myuid';

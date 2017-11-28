@@ -1,1 +1,1 @@
-module.exports = require('./RequestVerification/RequestVerification');
+module.exports = require('./RequestVerification');
