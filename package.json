@@ -4,7 +4,7 @@
   "description": "request verification",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
