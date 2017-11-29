@@ -2,14 +2,13 @@
 
 const crypto = require('crypto');
 
-class DigitalSignatureService {
+const verifyRequest = (contents, publicKey, sig) => {
+  const cryptoVerify = crypto.createVerify('RSA-SHA256');
+  cryptoVerify.write(contents);
+  cryptoVerify.end();
+  return cryptoVerify.verify(publicKey, sig, 'base64');
+};
 
-  verifyRequest(contents, publicKey, sig) {
-    const cryptoVerify = crypto.createVerify('RSA-SHA256');
-    cryptoVerify.write(contents);
-    cryptoVerify.end();
-    return cryptoVerify.verify(publicKey, sig, 'base64');
-  }
-}
-
-module.exports = DigitalSignatureService;
+module.exports = {
+  verifyRequest,
+};
