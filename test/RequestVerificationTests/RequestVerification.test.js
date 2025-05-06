@@ -21,7 +21,7 @@ const fs = require("fs");
 const expectedUid = "myuid";
 const expectedUuid = "myUuid";
 const expectedSig = "YWJjZGVm";
-
+const intentionalError = "ESLINT ERROR";
 describe("When verifying the request", () => {
   beforeEach(() => {
     DigitalSignatureService.verifyRequest.mockReset();
