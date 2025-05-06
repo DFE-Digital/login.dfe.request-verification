@@ -60,3 +60,4 @@ typings/
 #dev env
 /.idea
 eslint-results.xml
+junit.xml
