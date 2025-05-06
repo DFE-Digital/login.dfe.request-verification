@@ -1,5 +1,3 @@
-"use strict";
-
 const fs = require("fs");
 const digitalSignatureService = require("./../Utils/DigitalSignatureService");
 

@@ -1,5 +1,3 @@
-"use strict";
-
 const crypto = require("crypto");
 
 const verifyRequest = (contents, publicKey, sig) => {
