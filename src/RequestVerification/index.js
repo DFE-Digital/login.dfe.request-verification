@@ -4,7 +4,7 @@ const digitalSignatureService = require("./../Utils/DigitalSignatureService");
 const isFileSync = (aPath) => {
   try {
     return fs.statSync(aPath).isFile();
-  } catch (e) {
+  } catch {
     return false;
   }
 };
