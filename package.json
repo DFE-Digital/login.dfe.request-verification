@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.request-verification",
-  "version": "2.0.0",
+  "version": "2.1.1-beta.1",
   "description": "request verification",
   "main": "src/index.js",
   "scripts": {
